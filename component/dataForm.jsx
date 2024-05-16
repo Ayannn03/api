@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import axios from "axios";
+import axios from 'axios';
 
 const API_URL = 'https://serverless-api-rey.netlify.app/.netlify/functions/api/';
 
@@ -112,10 +112,7 @@ function DataForm() {
 
     return (
         <div>
-            <div className="modal-button">
-                <button onClick={() => setShowModal(true)}>Add Data</button>
-            </div>
-
+            
             {showModal && <div className="modal-overlay"></div>}
 
             {showModal && (
@@ -183,9 +180,12 @@ function DataForm() {
                     <div className="item-container">
                         {favorites.map(item => (
                             <div key={item._id} className="item-box-2">
+                                <div className="favorite-2">
                                 <button onClick={() => toggleFavorite(item._id)}>
                                     <span role="img" aria-label="heart">❤️</span>
                                 </button>
+                                </div>
+                                <div className="dish"> 
                                 <div>
                                     <strong>Name:</strong> {item.name}
                                 </div>
@@ -198,6 +198,10 @@ function DataForm() {
                                 <div>
                                     <strong>Cuisine:</strong> {item.cuisine}
                                 </div>
+                                    
+                                </div>
+                                
+                                
                             </div>
                         ))}
                     </div>
@@ -205,6 +209,10 @@ function DataForm() {
             )}
 
             <h2>Recipes</h2>
+            <div className="modal-button">
+                <button onClick={() => setShowModal(true)}>Add Data</button>
+            </div>
+
             <div className="item-container">
                 {data.filter((item) => {
                     const nameMatch = nameSearch === '' || item.name.toLowerCase().includes(nameSearch.toLowerCase());
@@ -216,10 +224,14 @@ function DataForm() {
                         <div className="buttons">
                             <button onClick={() => handleEdit(item._id)}>Edit</button>
                             <button onClick={() => handleDelete(item._id)}>Delete</button>
+                           
+                        </div>
+                        <div className="favorite">
                             <button onClick={() => toggleFavorite(item._id)}>
                                 <span role="img" aria-label="heart">❤️</span>
                             </button>
-                        </div>
+                            </div>
+                        <div className="dish">
                         <div>
                             <strong>Name:</strong> {item.name}
                         </div>
@@ -232,6 +244,9 @@ function DataForm() {
                         <div>
                             <strong>Cuisine:</strong> {item.cuisine}
                         </div>
+
+                        </div>
+                        
                     </div>
                 ))}
             </div>
